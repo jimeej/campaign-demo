@@ -1,0 +1,67 @@
+<section *ngIf="campaignDisplayList?.length">
+  <div class="list-group list-group-flush">
+    <div *ngFor="let campaign of campaignDisplayList; let i = index ;" (click)="setAsActive(campaign)" class="list-group-item list-group-item-action"
+      [ngClass]="{'active': campaign.isSelected}">
+      <div *ngIf="campaign.mode === 'view'">
+        <div class="row">
+          <div class="col-1">
+            <span class="badge badge-primary">{{i + 1}}</span>
+          </div>
+          <div class="col-7">
+            <span>{{campaign.data.title}}</span>
+          </div>
+          <div class="col-1 customBtn" (click)="toggleActiveCampaign(campaign)" placement="left" [tooltip]="campaign.data.isActive ? 'Pause Campaign' : 'Resume Campaign'">
+            <i [ngClass]="{'fa-pause-circle': campaign.data.isActive, 'fa-play-circle':!campaign.data.isActive}" class="fas actionIcons activeIcons"></i>
+          </div>
+          <div class="col-1 customBtn" (click)="campaign.data.isActive && changeMode(campaign, 'comment')" placement="left" [tooltip]="campaign.data.isActive ? 'Add Comment' : 'Comments are disabled'">
+            <i [ngClass]="{'fa-comment':campaign.data.isActive,'fa-comment-slash':!campaign.data.isActive}" class="fas actionIcons activeIcons" ></i>
+          </div>
+          <div class="col-1 customBtn" (click)="changeMode(campaign, 'rename')" placement="left" tooltip="Rename campaign">
+            <i class="fas fa-pen actionIcons activeIcons"></i>
+          </div>
+          <div class="col-1 customBtn" (click)="removeCampaign(campaign)" placement="left" tooltip="Remove campaign">
+            <i class="fas fa-trash actionIcons activeIcons"></i>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="campaign.mode === 'rename'">
+        <div class="input-group">
+          <input type="text" class="form-control" [(ngModel)]="campaign.renameInput" placeholder="Title for campaign goes here">
+          <div class="input-group-append">
+            <span class="input-group-text" (click)="editCampaignName(campaign)" placement="left" tooltip="Save">
+              <i class="fas fa-check actionIcons"></i>
+            </span>
+            <span class="input-group-text" (click)="campaign.renameInput=campaign.data.title;" placement="left" tooltip="Reset">
+              <i class="fas fa-undo actionIcons"></i>
+
+            </span>
+            <span class="input-group-text" (click)="changeMode(campaign, 'view')" placement="left" tooltip="Cancel changes">
+              <i class="fas fa-times actionIcons"></i>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="campaign.mode === 'comment'">
+        <div class="input-group">
+            <input type="text" class="form-control" [(ngModel)]="campaign.commentInput"  placeholder="Add your comment here ... ">
+            <div class="input-group-append">
+              <span class="input-group-text" (click)="addComment(campaign)" placement="left" tooltip="Add comment">
+                <i class="fas fa-check actionIcons"></i>
+              </span>
+              <span class="input-group-text" (click)="campaign.commentInput='';" placement="left" tooltip="Reset comment text">
+                <i class="fas fa-undo actionIcons"></i>
+
+              </span>
+              <span class="input-group-text" (click)="changeMode(campaign, 'view')" placement="left" tooltip="Cancel">
+                <i class="fas fa-times actionIcons"></i>
+              </span>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+<section [hidden]="campaignDisplayList?.length">
+  Fetching the data
+</section>

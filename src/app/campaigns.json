@@ -1,0 +1,23 @@
+{
+  "campaignList":[
+    {
+      "title":"campaign1",
+      "history":[{
+        "type":"create",
+        "data":"Campaign Created"
+      },
+      {
+        "type":"remove",
+        "data":"Campaign removed"
+      },
+      {
+        "type":"paused",
+        "data":"Campaign paused"
+      },
+      {
+        "type":"comments",
+        "data":["new Comment"]
+      }]
+    }
+  ]
+}

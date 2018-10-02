@@ -1,0 +1,42 @@
+.head-section {
+  height: 135px;
+}
+
+.content-section {
+  border-top: 1px solid rgba(0,0,0,.125);
+  height: calc(100vh - 135px);
+}
+.list-section {
+  padding: 0;
+  border-right: 1px solid rgba(0,0,0,.125);
+  height: 100%;
+  overflow-y: auto;
+  padding-bottom: 30px;
+}
+
+.history-section{
+  background-color: #f7f7f9;
+
+}
+
+
+.h100 {
+  height: 100%;
+}
+
+.allCampaignHeader{
+  background-color: #f7f7f9;
+  padding:15px;
+}
+
+.campaignListSection{
+  padding: 15px;
+}
+
+.createNewBtn{
+  margin-left:40px;
+}
+
+.campaignList{
+  margin-left: 15px;
+}
